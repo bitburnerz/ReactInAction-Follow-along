@@ -1,0 +1,39 @@
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+.task-lists {
+  display: flex;
+  justify-content: space-around;
+ }
+
+
+.task-list {
+  background-color: beige;
+  width: 300px;
+}
+
+.task-list-title {
+  text-align: center;
+  text-transform: uppercase;
+  color: blue;
+  font-size: 200%;
+  margin-bottom: 20px;
+}
+
+.task {
+  margin: 10px;
+  font-size: 18pt;
+  display: flex;
+  flex-direction: column;
+  background-color: whitesmoke;
+  margin-bottom: 20px;
+}
+
+.task-header {
+  font-size: 150%;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.task-cancel {
+  background-color: blue}
