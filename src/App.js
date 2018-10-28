@@ -5,18 +5,20 @@ import { createTask, editTask } from './actions';
 
 class App extends Component {
 
+  onEditTask = (taskid, newtaskstatus) => {
+    console.log('editing task ' + taskid + 
+      'by updating its status to ' + newtaskstatus);
+    this.props.dispatch(editTask(taskid, newtaskstatus));
+  }
+
   onCreateTask = (title, description) => {
     console.log(
       'dispatch called from App! with title ' + title + 
       ' and description ' + description);
     this.props.dispatch(createTask(title, description));
-  };
+  }
 
-  onEditTask = (taskid, newtaskstatus) => {
-    console.log('editing task ' + taskid + 
-      'by updating its status to ' + newtaskstatus);
-    this.props.dispatch(editTask(taskid, newtaskstatus));
-  };
+
 
   render() {
     console.log('props from App:', this.props);

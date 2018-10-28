@@ -35,11 +35,7 @@ class TasksPage extends Component {
     this.resetForm();
   }
 
-  onEditTask = (e) => {
-    e.preventDefault();
-  }
-
-  toggleForm = () => {
+   toggleForm = () => {
     this.setState({ showNewCardForm: !this.state.showNewCardForm});
   }
 
@@ -48,7 +44,7 @@ class TasksPage extends Component {
 
     return TASK_STATUSES.map(status => {
       const statusTasks = tasks.filter(task => task.status === status);
-      return <TaskList key={status} status={status} tasks={statusTasks} />;
+      return <TaskList key={status} status={status} tasks={statusTasks} onEditTask={this.props.onEditTask} />;
     }
     );
   }

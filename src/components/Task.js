@@ -11,7 +11,7 @@ const Task = props => {
     <div className="task">
       <div className="task-header">
         <div>{props.task.title}</div>
-        <select value={props.task.status}>
+        <select value={props.task.status} onChange={function (e) { props.onEditTask(props.task.id, e.target.value)}} >
           {TASK_STATUSES.map(status => (
             <option key={status} value={status}>{status}</option>
           ))}
