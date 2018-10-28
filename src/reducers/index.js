@@ -21,19 +21,15 @@ export default function tasksReducer(state = { tasks: mockTasks }, action) {
   switch(action.type) {
     case "CREATE_TASK":
       newstate = { tasks: [...state.tasks, action.payload]};
-
       console.log("create tasks with:" + newstate.tasks)
       break;
-    default:
-      newstate = state;
-  }
-  switch (action.type) {
     case "EDIT_TASK":
       newstate = { tasks: [...state.tasks] };
       newstate.tasks[action.payload.taskid - 1].status = action.payload.newtaskstatus;
       break;
     default:
       newstate = state;
+      break;
   }
   return newstate;
 }
