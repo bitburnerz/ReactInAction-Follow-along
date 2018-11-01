@@ -11,6 +11,6 @@ const TaskList = (props) => {
       {props.tasks.map(task => (<Task key={task.id} task={task} onEditTask={props.onEditTask} />))}
     </div>
   );
-}
+};
 
 export default TaskList;

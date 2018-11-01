@@ -18,8 +18,6 @@ class App extends Component {
     this.props.dispatch(createTask(title, description));
   }
 
-
-
   render() {
     console.log('props from App:', this.props);
     return (
