@@ -1,9 +1,13 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
 import TasksPage from './components/TasksPage';
-import { createTask, editTask } from './actions';
+import { createTask, editTask, fetchTasks } from './actions';
 
 class App extends Component {
+
+  componentDidMount() {
+    this.props.dispatch(fetchTasks());
+  }
 
   onEditTask = (taskid, newtaskstatus) => {
     console.log('editing task ' + taskid + 

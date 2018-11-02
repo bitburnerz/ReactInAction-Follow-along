@@ -1,21 +1,4 @@
-import { uniqueId } from '../actions/index'
-
-const mockTasks = [
-  {
-    id: uniqueId(),
-    title: 'Learn Redux',
-    description: 'The store, actions, and reducers, oh my!',
-    status: 'In Progress',
-  },
-  {
-    id: uniqueId(),
-    title: 'Peace on Earth',
-    description: 'No big deal.',
-    status: 'In Progress',
-  },
-];
-
-export default function tasksReducer(state = { tasks: mockTasks }, action) {
+export default function tasksReducer(state = { tasks: [] }, action) {
   console.log("Reducer called with action" + action.type);
   let newstate;
   switch(action.type) {
@@ -27,6 +10,9 @@ export default function tasksReducer(state = { tasks: mockTasks }, action) {
       newstate = { tasks: [...state.tasks] };
       newstate.tasks[action.payload.taskid - 1].status = action.payload.newtaskstatus;
       break;
+    case 'FETCH_TASKS_SUCCEEDED':
+      newstate = { tasks: [...state.tasks, ...action.payload.tasks] };
+      break
     default:
       newstate = state;
       break;
