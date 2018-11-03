@@ -2,7 +2,7 @@ export default function tasksReducer(state = { tasks: [] }, action) {
   console.log("Reducer called with action" + action.type);
   let newstate;
   switch(action.type) {
-    case "CREATE_TASK":
+    case "CREATE_TASK_SUCCEEDED":
       newstate = { tasks: [...state.tasks, action.payload]};
       console.log("create tasks with:" + newstate.tasks)
       break;
