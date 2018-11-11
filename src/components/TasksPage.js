@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import TaskList from './TaskList';
+import 'semantic-ui-css/semantic.min.css';
+import { Segment, Input, Button, Grid } from 'semantic-ui-react'
 
 const TASK_STATUSES = ['Unstarted', 'In Progress', 'Completed'];
 
@@ -42,37 +44,40 @@ class TasksPage extends Component {
   renderTaskLists() {
     const { tasks } = this.props;
 
-    return TASK_STATUSES.map(status => {
-      const statusTasks = tasks.filter(task => task.status === status);
-      return <TaskList key={status} status={status} tasks={statusTasks} onEditTask={this.props.onEditTask} />;
-    }
-    );
+    return (<Grid padded textAlign='center' columns={3}>
+      <Grid.Row stretched>
+
+      {TASK_STATUSES.map(status => {
+          const statusTasks = tasks.filter(task => task.status === status);
+          return <Grid.Column><Segment><TaskList key={status} status={status} tasks={statusTasks} onEditTask={this.props.onEditTask} /></Segment></Grid.Column>;
+        })}
+      </Grid.Row></Grid>)
   }
 
   render() {
     return (
       <div>
         <div className='task-lists-header'>
-         <button className='button button-default' onClick={this.toggleForm}>+ New Task</button>
+         <Button className='button button-default' onClick={this.toggleForm}>+ New Task</Button>
 
         </div>
         { this.state.showNewCardForm && (
           <form className="task-list-form" onSubmit={this.onCreateTask}>
-            <input
+            <Input
               className="full-width-input"
               onChange={this.onTitleChange}
               value={this.state.title}
               type="text"
               placeholder="title"
             />
-            <input 
+            <Input 
               className="full-width-input"
               onChange={this.onDescriptionChange}
               value={this.state.description}
               type="text"
               placeholder="description"
             />
-            <button className="button" type="submit">Save</button>
+            <Button type="submit">Save</Button>
           </form>
         )}
         <div className='task-lists'>

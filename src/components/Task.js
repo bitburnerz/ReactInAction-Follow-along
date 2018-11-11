@@ -1,9 +1,11 @@
 import React from "react";
+import 'semantic-ui-css/semantic.min.css';
+import { Dropdown } from 'semantic-ui-react'
 
 const TASK_STATUSES = [
-  'Unstarted',
-  'In Progress',
-  'Completed'
+  { key: 1, text: 'Unstarted', value: 'Unstarted' },
+  { key: 2, text: 'In Progress', value: 'In Progress' },
+  { key: 3, text: 'Completed', value: 'Completed' },
 ]
 
 const Task = props => {
@@ -11,11 +13,8 @@ const Task = props => {
     <div className="task">
       <div className="task-header">
         <div>{props.task.title}</div>
-        <select value={props.task.status} onChange={function (e) { props.onEditTask(props.task.id, e.target.value)}} >
-          {TASK_STATUSES.map(status => (
-            <option key={status} value={status}>{status}</option>
-          ))}
-        </select>
+          <Dropdown text="Change Status" onChange={function (e, data) { props.onEditTask(props.task.id, data.value)}} options={TASK_STATUSES} blahbla />
+         
       </div>
       <div className="task-body">{props.task.description}</div>
     </div>

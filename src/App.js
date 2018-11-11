@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import { connect } from 'react-redux';
 import TasksPage from './components/TasksPage';
 import { createTask, editTask, fetchTasks } from './actions';
+import 'semantic-ui-css/semantic.min.css';
+import { Dimmer, Loader } from 'semantic-ui-react'
+
 
 class App extends Component {
 
@@ -26,11 +29,12 @@ class App extends Component {
     console.log('props from App:', this.props);
     return (
       <div className='main-content'>
-        <TasksPage 
-        tasks={this.props.tasks} 
-        onCreateTask={this.onCreateTask} 
-        onEditTask={this.onEditTask}
-        />
+          <Loader active/>
+          <TasksPage 
+          tasks={this.props.tasks} 
+          onCreateTask={this.onCreateTask} 
+          onEditTask={this.onEditTask}
+          />
       </div>
     );
   }
