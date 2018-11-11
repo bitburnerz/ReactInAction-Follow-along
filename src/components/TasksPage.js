@@ -41,17 +41,37 @@ class TasksPage extends Component {
     this.setState({ showNewCardForm: !this.state.showNewCardForm});
   }
 
+  allowdrop = (e) => {
+    e.preventDefault();
+  }
+
+  drop = (status, e) => {
+    e.preventDefault();
+    this.props.onEditTask(e.dataTransfer.getData("text"), status);
+  }
+
   renderTaskLists() {
     const { tasks } = this.props;
 
-    return (<Grid padded textAlign='center' columns={3}>
-      <Grid.Row stretched>
-
-      {TASK_STATUSES.map(status => {
-          const statusTasks = tasks.filter(task => task.status === status);
-          return <Grid.Column><Segment><TaskList key={status} status={status} tasks={statusTasks} onEditTask={this.props.onEditTask} /></Segment></Grid.Column>;
-        })}
-      </Grid.Row></Grid>)
+    return (
+      <Grid  textAlign='center' columns={5}>
+      <Grid.Row stretched >
+        {TASK_STATUSES.map((status, index) => {
+            const statusTasks = tasks.filter(task => task.status === status);
+            return ( 
+              <Grid.Column key={index}>
+                <div onDrop={(e) => this.drop(status, e)} onDragOver={this.allowdrop} >
+                <Segment>
+                  <TaskList key={status} status={status} tasks={statusTasks} />
+                </Segment>
+                </div>
+              </Grid.Column>
+            );
+          }
+        )
+        }
+      </Grid.Row>
+      </Grid>)
   }
 
   render() {

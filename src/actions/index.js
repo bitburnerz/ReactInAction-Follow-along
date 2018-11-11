@@ -50,7 +50,7 @@ export function editTask(taskid, newtaskstatus) {
 }
 
 function getTaskById(tasks, id) {
-  return tasks.find(task => task.id === id);
+  return tasks.find(task => task.id == id);
 }
 
 export function editTaskSucceeded(updatedtask) {

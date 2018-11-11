@@ -29,7 +29,6 @@ class App extends Component {
     console.log('props from App:', this.props);
     return (
       <div className='main-content'>
-          <Loader active/>
           <TasksPage 
           tasks={this.props.tasks} 
           onCreateTask={this.onCreateTask} 
