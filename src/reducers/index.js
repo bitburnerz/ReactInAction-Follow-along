@@ -4,11 +4,16 @@ export default function tasksReducer(state = { tasks: [] }, action) {
   switch(action.type) {
     case "CREATE_TASK_SUCCEEDED":
       newstate = { tasks: [...state.tasks, action.payload]};
-      console.log("create tasks with:" + newstate.tasks)
       break;
-    case "EDIT_TASK":
-      newstate = { tasks: [...state.tasks] };
-      newstate.tasks[action.payload.taskid - 1].status = action.payload.newtaskstatus;
+    case "EDIT_TASK_SUCCEEDED":
+      newstate = { tasks: 
+        state.tasks.map(task => {
+          if (task.id === action.payload.id) {
+            return action.payload;
+          }
+          return task;
+        }),
+      };
       break;
     case 'FETCH_TASKS_SUCCEEDED':
       newstate = { tasks: [...state.tasks, ...action.payload.tasks] };
