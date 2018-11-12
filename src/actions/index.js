@@ -3,10 +3,19 @@ import axios from 'axios';
 
 // this is an async function, which when completed, well call the
 // synchronous "fetchTasksSucceeeded" action
+
+function fetchTasksStarted() {
+  return {
+    type: "FETCH_TASKS_STARTED",
+  };
+}
+
+
 export function fetchTasks() {
   return dispatch => {
-    api.fetchTasks().then(resp => { dispatch(fetchTasksSucceeded(resp.data))
-    })
+    dispatch(fetchTasksStarted());
+    api.fetchTasks().then(resp => { dispatch(fetchTasksSucceeded(resp.data));
+    });
   };
 }
 

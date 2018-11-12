@@ -17,8 +17,8 @@ export default function tasksReducer(state = initialState, action) {
       
       break;
 
+
     case "EDIT_TASK_SUCCEEDED":
-      
       newstate = {
         ...state,
         tasks: 
@@ -32,9 +32,13 @@ export default function tasksReducer(state = initialState, action) {
 
       break;
 
+    case "FETCH_TASKS_STARTED":
+      newstate = {...state, isLoading:true};
+      break;
+
     case 'FETCH_TASKS_SUCCEEDED':
       newstate = {...state, isLoading:false, tasks: [...state.tasks, ...action.payload.tasks]};
-      break
+      break;
 
     default:
       newstate = state;

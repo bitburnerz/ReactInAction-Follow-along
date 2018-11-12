@@ -29,7 +29,8 @@ class App extends Component {
     console.log('props from App:', this.props);
     return (
       <div className='main-content'>
-          <TasksPage 
+        <Loader active={this.props.isLoading} inline />  
+        <TasksPage 
           tasks={this.props.tasks} 
           onCreateTask={this.onCreateTask} 
           onEditTask={this.onEditTask}
@@ -43,7 +44,8 @@ class App extends Component {
 // the following function can be named anything really
 function JFMapStateToProps(state) {
   return {
-    tasks: state.tasks.tasks
+    tasks: state.tasks.tasks,
+    isLoading: state.tasks.isLoading,
   }
 }
 
