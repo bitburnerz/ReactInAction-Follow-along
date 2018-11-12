@@ -41,7 +41,7 @@ export function createTaskSucceeded(task) {
 
 export function editTask(taskid, newtaskstatus) {
   return (dispatch, getState) => {
-    const task = getTaskById(getState().tasks, taskid);
+    const task = getTaskById(getState().tasks.tasks, taskid);
     const updatedTask = Object.assign({}, task, { status: newtaskstatus });
     api.editTask(taskid, updatedTask).then(response => {
       dispatch(editTaskSucceeded(response.data));

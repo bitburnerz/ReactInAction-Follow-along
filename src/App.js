@@ -43,7 +43,7 @@ class App extends Component {
 // the following function can be named anything really
 function JFMapStateToProps(state) {
   return {
-    tasks: state.tasks
+    tasks: state.tasks.tasks
   }
 }
 
