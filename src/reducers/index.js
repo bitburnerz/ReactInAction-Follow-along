@@ -36,6 +36,10 @@ export default function tasksReducer(state = initialState, action) {
       newstate = {...state, isLoading:true};
       break;
 
+    case 'FETCH_TASKS_ERROR':
+      newstate = {...state, error:true};
+      break;
+
     case 'FETCH_TASKS_SUCCEEDED':
       newstate = {...state, isLoading:false, tasks: [...state.tasks, ...action.payload.tasks]};
       break;

@@ -14,9 +14,20 @@ function fetchTasksStarted() {
 export function fetchTasks() {
   return dispatch => {
     dispatch(fetchTasksStarted());
-    api.fetchTasks().then(resp => { dispatch(fetchTasksSucceeded(resp.data));
+    api.fetchTasks().then(resp => { 
+      dispatch(fetchTasksSucceeded(resp.data));
+    })
+    .catch(err => {
+      dispatch(fetchTasksError());
     });
   };
+}
+
+export function fetchTasksError() {
+  return {
+    type: 'FETCH_TASKS_ERROR',
+    payload: {},
+  }
 }
 
 export function fetchTasksSucceeded(tasks) {

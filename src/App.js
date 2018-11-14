@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import TasksPage from './components/TasksPage';
 import { createTask, editTask, fetchTasks } from './actions';
 import 'semantic-ui-css/semantic.min.css';
-import { Dimmer, Loader } from 'semantic-ui-react'
+import { Message, Dimmer, Loader } from 'semantic-ui-react'
 
 
 class App extends Component {
@@ -26,10 +26,11 @@ class App extends Component {
   }
 
   render() {
-    console.log('props from App:', this.props);
     return (
+
       <div className='main-content'>
         <Loader active={this.props.isLoading} inline />  
+        {this.props.error === true ? <Message negative>Failed to fetch tasks</Message> : '' }
         <TasksPage 
           tasks={this.props.tasks} 
           onCreateTask={this.onCreateTask} 
@@ -46,6 +47,7 @@ function JFMapStateToProps(state) {
   return {
     tasks: state.tasks.tasks,
     isLoading: state.tasks.isLoading,
+    error: state.tasks.error,
   }
 }
 
